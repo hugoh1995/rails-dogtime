@@ -1,30 +1,46 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1><%= @request.name %></h1>
-    <h2><%= @request.description %></h2>
-    <h2><%= @request.date %></h2>
+<div class="card banner"
+  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @request.photo.path, height: 600, width: 1450, crop: :fill %>');height: 400px;">
+  <div class="card-category" style="color: white;">Request Details</div>
+  <div class="card-description" style="color: white;">
+      <h1><%= @request.name %></h1>
+      <p><%= @request.description %></p>
+      <h2><%= @request.date %></h2>
   </div>
+  <a class="card-link" href="#" ></a>
 </div>
-<hr>
-<div class="row">
-  <ul class="col-xs-6">
-    Quantity
-    <hr>
-    <% @request.quantities.each do |quantity| %>
-      <li>
-        <%= quantity.number %> - <%= quantity.breed.name %>
-        <%= link_to 'X', quantity_path(quantity), method: :delete %>
-      </li>
-    <% end %>
-  </ul>
 
-  <ul class="col-xs-6">
-    Add a breed
-    <hr>
-    <%= simple_form_for [@request, @quantity] do |f| %>
-      <%= f.input :number %>
-      <%= f.input :breed_id, collection: Breed.all %>
-      <%= f.submit class: 'btn btn-primary' %>
+<div class="container">
+<br>
+  <div class="row">
+    <ul class="col-xs-12 col-lg-6">
+      Quantity
+      <hr>
+      <% @request.quantities.each do |quantity| %>
+        <li>
+          <%= quantity.number %> - <%= quantity.breed.name %>
+          <%= link_to 'X', quantity_path(quantity), method: :delete %>
+        </li>
+      <% end %>
+    </ul>
+
+    <ul class="col-xs-12 col-lg-6">
+      Add a breed
+      <hr>
+      <%= simple_form_for [@request, @quantity] do |f| %>
+        <%= f.input :number %>
+        <%= f.input :breed_id, collection: Breed.all %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </ul>
+    <%= link_to 'Back', requests_path %>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-xs-12">
+    <% if @request.photo? %>
+      <%= cl_image_tag @request.photo.path, width: 200, height: 300, crop: :fill %>
     <% end %>
-  </ul>
+    </div>
+  </div> -->
 </div>

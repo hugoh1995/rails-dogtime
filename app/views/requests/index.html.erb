@@ -1,6 +1,28 @@
-<%= link_to "Create Request", new_request_path(request), class: "btn btn-primary" %>
-<% @requests.each do |request| %>
+<!-- app/views/pages/home.html.erb -->
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <%= cl_image_tag("ve235erbhvip4pa1dnqf.jpg",
+          width: 1300, height: 700, crop: :fill) %>
+  </div>
+</div>
+<div class="container">
+<div class="row">
+  <div class="col-xs-12 text-center">
+    <%= link_to "Create Request", new_request_path(request), class: "btn-lg btn-primary text-align-center" %>
+  </div>
+</div>
 <hr>
-<p>Request by : <%= request.name %></p>
-<p>Date : <%= request.date %></p>
+
+<% @requests.reverse.each do |request| %>
+  <div class="row">
+    <div class="col-xs-8 text-left">
+      <p>Request by : <%= request.name %> Date : <%= request.date %></p>
+      <p>Message : <%= request.description %></p>
+    </div>
+    <div class="col-xs-4 text-right">
+      <%= link_to "Show", request_path(request), class: "btn-lg btn-danger text-align-center" %>
+    </div>
+  </div>
+<hr>
 <% end %>
+</div>
