@@ -1,0 +1,6 @@
+<%= link_to "Create Request", new_request_path(request), class: "btn btn-primary" %>
+<% @requests.each do |request| %>
+<hr>
+<p>Request by : <%= request.name %></p>
+<p>Date : <%= request.date %></p>
+<% end %>

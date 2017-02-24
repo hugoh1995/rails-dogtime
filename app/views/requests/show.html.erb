@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1><%= @request.name %></h1>
+    <h2><%= @request.description %></h2>
+    <h2><%= @request.date %></h2>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <ul class="col-xs-6">
+    Quantity
+    <hr>
+    <% @request.quantities.each do |quantity| %>
+      <li>
+        <%= quantity.number %> - <%= quantity.breed.name %>
+        <%= link_to 'X', quantity_path(quantity), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul class="col-xs-6">
+    Add a breed
+    <hr>
+    <%= simple_form_for [@request, @quantity] do |f| %>
+      <%= f.input :number %>
+      <%= f.input :breed_id, collection: Breed.all %>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+  </ul>
+</div>

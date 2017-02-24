@@ -1,0 +1,5 @@
+<%= simple_form_for [@request, @quantity] do |f| %>
+  <%= f.input :breed_id, collection: Breed.all %>
+  <%= f.input :number %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
